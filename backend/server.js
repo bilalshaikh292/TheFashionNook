@@ -4,9 +4,10 @@ import data from './data.js';
 import mongoose from 'mongoose';
 import config from './config';
 import userRouter from './routers/userRoute';
+import bodyParser from 'body-parser';
 
 //remainig to set .env enviroemnt
-//console.log(config.PORT);
+console.log(config.PORT);
 
 mongoose
   .connect('mongodb://0.0.0.0:27017/thefashionnookdb', {
@@ -21,7 +22,7 @@ mongoose
   });
 const app =  express();
 app.use(cors());
-
+app.use(bodyParser.json())
 app.use('/api/users',userRouter);
 
 app.get("/api/products",(req,res) => {
@@ -36,6 +37,10 @@ app.get('/api/products/:id', (req, res) => {
   else{
        res.status(404).send({message:'product Nahi Mila !'})
    }
+});
+app.use((err,req,res,next) =>{
+  const status = err.name && err.name === 'ValidationError'? 400: 500;
+  res.status(status).send({message: err.message});
 });
 app.listen(5000,() => {
     console.log('server live at https://localhost:5000');

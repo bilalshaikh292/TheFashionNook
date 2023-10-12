@@ -1,14 +1,16 @@
 import express from 'express';
 import User from '../models/usermodels';
+import expressAsyncHandler from 'express-async-handler';
+import { generateToken } from '../util';
 
 const userRouter = express.Router();
 userRouter.get(
-    '/createadmin',async (req, res) => {
+    '/createadmin',expressAsyncHandler( async (req, res) => {
       try {
         const user = new User({
           name: 'admin',
           email: 'admin@example.com',
-          password: 'jsamazona',
+          password: 'admin',
           isAdmin: true,
         });
         const createdUser = await user.save();
@@ -16,5 +18,27 @@ userRouter.get(
       } catch (err) {
         res.status(500).send({ message: err.message });
       }
-    });
+    }));
+userRouter.post(
+  '/signin',
+  expressAsyncHandler (async (req, res) => {
+      const signinUser = await User.findOne({
+        email: req.body.email,
+        password: req.body.password,
+      });
+      if (!signinUser) {
+        res.status(401).send({
+          message: 'Invalid Email or Password! Email And Passowd Tapasun Paha',
+        });
+      }
+      else{
+        res.send({
+          _id: signinUser._id,
+          name: signinUser.name,
+          email: signinUser.email,
+          isAdmin: signinUser.isAdmin,
+          token: generateToken(signinUser),
+        });
+      }
+    }));
     export default userRouter;
