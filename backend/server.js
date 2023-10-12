@@ -6,11 +6,9 @@ import config from './config';
 import userRouter from './routers/userRoute';
 import bodyParser from 'body-parser';
 
-//remainig to set .env enviroemnt
-console.log(config.PORT);
 
 mongoose
-  .connect('mongodb://0.0.0.0:27017/thefashionnookdb', {
+  .connect(config.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

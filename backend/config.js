@@ -1,8 +1,5 @@
 import dotenv from 'dotenv';
-import {} from 'dotenv/config'
 dotenv.config({ silent: process.env.NODE_ENV === 'production' });
-
-//dotenv.config();
 
 export default {
   PORT: process.env.PORT,
