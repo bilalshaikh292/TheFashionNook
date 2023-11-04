@@ -132,7 +132,7 @@ const OrderScreen = {
                 : `<div class="error">Not Paid</div>`
             }
           </div>
-          <div>
+          <div >
             <ul class="cart-list-container">
               <li>
                 <h2>Shopping Cart</h2>
@@ -159,7 +159,7 @@ const OrderScreen = {
             </ul>
           </div>
         </div>
-        <div class="order-action">
+        <div class="order-action" id="order-final-form">
            <ul>
                 <li>
                   <h2>Order Summary</h2>

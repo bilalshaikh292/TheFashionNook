@@ -23,7 +23,7 @@ const convertCartToOrder = () => {
   }
   const itemsPrice = orderItems.reduce((a, c) => a + c.price * c.qty, 0);
   const shippingPrice = itemsPrice > 100 ? 0 : 10;
-  const taxPrice = Math.round(0.15 * itemsPrice * 100) / 100;
+  const taxPrice = Math.round(0.18 * itemsPrice * 100) / 100;
   const totalPrice = itemsPrice + shippingPrice + taxPrice;
   return {
     orderItems,
@@ -112,7 +112,7 @@ const PlaceOrderScreen = {
             </ul>
           </div>
         </div>
-        <div class="order-action">
+        <div class="order-action" id="order-form">
            <ul>
                 <li>
                   <h2>Order Summary</h2>

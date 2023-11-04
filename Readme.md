@@ -28,3 +28,4 @@ Error: error:0308010C:digital envelope routines::unsupported
   reason: 'unsupported',
   code: 'ERR_OSSL_EVP_UNSUPPORTED'
 }
+http://localhost:5000/api/users/createadmin

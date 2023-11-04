@@ -48,7 +48,7 @@ const ShippingScreen = {
           </li>
 
           <li>
-            <button type="submit" class="primary">Continue</button>
+            <button id="shipping-form-button" type="submit" class="primary">Continue</button>
           </li>        
         </ul>
       </form>
